@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora de Médias</title>
+    <script>
+        // Programa para calcular médias de notas de uma turma
+
+        // Vetores das notas de AV1 e AV2
+        let notasAV1 = [9, 5, 6, 7, 4]; // Exemplos de notas para AV1
+        let notasAV2 = [7, 6, 8, 5, 3]; // Exemplos de notas para AV2
+
+        // a) Determinar e mostrar as maiores e menores notas
+        let maiorAV1 = Math.max(...notasAV1);
+        let menorAV1 = Math.min(...notasAV1);
+        let maiorAV2 = Math.max(...notasAV2);
+        let menorAV2 = Math.min(...notasAV2);
+
+        document.write("<h4>Notas de AV1 e AV2:</h4>");
+        document.write(`Maior nota AV1: ${maiorAV1}<br>`);
+        document.write(`Menor nota AV1: ${menorAV1}<br>`);
+        document.write(`Maior nota AV2: ${maiorAV2}<br>`);
+        document.write(`Menor nota AV2: ${menorAV2}<br><br>`);
+
+        // b) Calcular a média de cada aluno e organizar as médias em ordem crescente
+        let medias = [];
+        for (let i = 0; i < notasAV1.length; i++) {
+            medias.push((notasAV1[i] + notasAV2[i]) / 2);
+        }
+        medias.sort((a, b) => a - b); // Ordenar em ordem crescente
+
+        document.write("<h3>Médias dos alunos em ordem crescente:</h3>");
+        document.write(medias.join(", ") + "<br><br>");
+
+        // c) Determinar a maior e a menor média da turma
+        let maiorMedia = medias[medias.length - 1];
+        let menorMedia = medias[0];
+
+        document.write("<h3>Maior e Menor Média da Turma:</h3>");
+        document.write(`Maior média: ${maiorMedia}<br>`);
+        document.write(`Menor média: ${menorMedia}<br><br>`);
+
+        // d) Classificar os alunos (aprovados e recuperação)
+        let aprovados = 0;
+        let recuperacao = [];
+        for (let media of medias) {
+            if (media >= 5) {
+                aprovados++;
+            } else {
+                recuperacao.push(media);
+            }
+        }
+
+        document.write("<h3>Classificação dos Alunos:</h3>");
+        document.write(`Aprovados: ${aprovados}<br>`);
+        document.write(`Recuperação: ${medias.length - aprovados}<br>`);
+        document.write(`Médias em recuperação: ${recuperacao.join(", ")}<br>`);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
