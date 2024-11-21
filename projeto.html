@@ -4,35 +4,50 @@
 <head>
     <title>Calculadora de Médias</title>
     <script>
-        // Programa para calcular médias de notas de uma turma
-
-        // Vetores das notas de AV1 e AV2
-        let notasAV1 = [9, 5, 6, 7, 4]; // Exemplos de notas para AV1
+        // Vetores com notas das avaliações
+        let notasAV1 = [5, 5, 6, 7, 4]; // Exemplos de notas para AV1
         let notasAV2 = [7, 6, 8, 5, 3]; // Exemplos de notas para AV2
 
-        // a) Determinar e mostrar as maiores e menores notas
-        let maiorAV1 = Math.max(...notasAV1);
-        let menorAV1 = Math.min(...notasAV1);
-        let maiorAV2 = Math.max(...notasAV2);
-        let menorAV2 = Math.min(...notasAV2);
+        // a) Determinar maior e menor nota manualmente
+        let maiorAV1 = notasAV1[0];
+        let menorAV1 = notasAV1[0];
+        let maiorAV2 = notasAV2[0];
+        let menorAV2 = notasAV2[0];
 
-        document.write("<h4>Notas de AV1 e AV2:</h4>");
+        for (let i = 1; i < notasAV1.length; i++) {
+            if (notasAV1[i] > maiorAV1) maiorAV1 = notasAV1[i];
+            if (notasAV1[i] < menorAV1) menorAV1 = notasAV1[i];
+            if (notasAV2[i] > maiorAV2) maiorAV2 = notasAV2[i];
+            if (notasAV2[i] < menorAV2) menorAV2 = notasAV2[i];
+        }
+
+        document.write("<h3>Notas de AV1 e AV2:</h3>");
         document.write(`Maior nota AV1: ${maiorAV1}<br>`);
         document.write(`Menor nota AV1: ${menorAV1}<br>`);
         document.write(`Maior nota AV2: ${maiorAV2}<br>`);
         document.write(`Menor nota AV2: ${menorAV2}<br><br>`);
 
-        // b) Calcular a média de cada aluno e organizar as médias em ordem crescente
+        // b) Calcular a média de cada aluno manualmente e armazenar em um novo vetor
         let medias = [];
         for (let i = 0; i < notasAV1.length; i++) {
-            medias.push((notasAV1[i] + notasAV2[i]) / 2);
+            medias[i] = (notasAV1[i] + notasAV2[i]) / 2;
         }
-        medias.sort((a, b) => a - b); // Ordenar em ordem crescente
+
+        // Ordenar as médias em ordem crescente sem usar sort()
+        for (let i = 0; i < medias.length - 1; i++) {
+            for (let j = i + 1; j < medias.length; j++) {
+                if (medias[i] > medias[j]) {
+                    let temp = medias[i];
+                    medias[i] = medias[j];
+                    medias[j] = temp;
+                }
+            }
+        }
 
         document.write("<h3>Médias dos alunos em ordem crescente:</h3>");
         document.write(medias.join(", ") + "<br><br>");
 
-        // c) Determinar a maior e a menor média da turma
+        // c) Determinar a maior e a menor média manualmente
         let maiorMedia = medias[medias.length - 1];
         let menorMedia = medias[0];
 
@@ -40,14 +55,14 @@
         document.write(`Maior média: ${maiorMedia}<br>`);
         document.write(`Menor média: ${menorMedia}<br><br>`);
 
-        // d) Classificar os alunos (aprovados e recuperação)
+        // d) Classificar alunos como aprovados ou em recuperação
         let aprovados = 0;
         let recuperacao = [];
-        for (let media of medias) {
-            if (media >= 5) {
+        for (let i = 0; i < medias.length; i++) {
+            if (medias[i] >= 5) {
                 aprovados++;
             } else {
-                recuperacao.push(media);
+                recuperacao[recuperacao.length] = medias[i]; // Adiciona ao vetor manualmente
             }
         }
 
