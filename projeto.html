@@ -4,7 +4,6 @@
 <head>
     <title>Calculadora de Médias</title>
     <script>
-        // Vetores com notas das avaliações
         let notasAV1 = [5, 5, 6, 7, 4]; // Exemplos de notas para AV1
         let notasAV2 = [7, 6, 8, 5, 3]; // Exemplos de notas para AV2
 
@@ -33,7 +32,6 @@
             medias[i] = (notasAV1[i] + notasAV2[i]) / 2;
         }
 
-        // Ordenar as médias em ordem crescente sem usar sort()
         for (let i = 0; i < medias.length - 1; i++) {
             for (let j = i + 1; j < medias.length; j++) {
                 if (medias[i] > medias[j]) {
