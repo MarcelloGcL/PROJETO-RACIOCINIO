@@ -20,9 +20,27 @@ Ytalo Ravir Freitas Vasconcelos / Matrícula: 2425167
 -->
 
 
+</head>
+
+<body>
+
     <script>
-        let notasAV1 = [5, 5, 6, 7, 4];
-        let notasAV2 = [7, 6, 8, 5, 3];
+        let quantidadeDeAlunos;
+        let notasAV1 = [];
+        let notasAV2 = [];
+
+        // Receber a quantidade de alunos para determinar o tamanho dos vetores
+        while (!parseInt(quantidadeDeAlunos) || quantidadeDeAlunos < 1) {
+            quantidadeDeAlunos = parseInt(prompt("Digite o número de alunos que deseja inserir as notas." + "\n" +
+                                          "O valor deve ser um número inteiro e diferente de 0!" 
+                                        ));
+        }
+
+        // a) Realizar a leitura das notas dos vetores
+        for (let i = 0; i < quantidadeDeAlunos; i++) {
+            notasAV1[i] = parseFloat(prompt("Digite a nota 1 do aluno " + (i + 1) + "!"));
+            notasAV2[i] = parseFloat(prompt("Digite a nota 2 do aluno " + (i + 1) + "!"));
+        }
 
         // a) Determinar maior e menor nota manualmente
         let maiorAV1 = notasAV1[0];
@@ -38,10 +56,10 @@ Ytalo Ravir Freitas Vasconcelos / Matrícula: 2425167
         }
 
         document.write("<h3>Notas de AV1 e AV2:</h3>");
-        document.write(`Maior nota AV1: ${maiorAV1}<br>`);
-        document.write(`Menor nota AV1: ${menorAV1}<br>`);
-        document.write(`Maior nota AV2: ${maiorAV2}<br>`);
-        document.write(`Menor nota AV2: ${menorAV2}<br><br>`);
+        document.write(`<b>Maior nota AV1:</b> ${maiorAV1}<br>`);
+        document.write(`<b>Menor nota AV1:</b> ${menorAV1}<br>`);
+        document.write(`<b>Maior nota AV2:</b> ${maiorAV2}<br>`);
+        document.write(`<b>Menor nota AV2:</b> ${menorAV2}<br><br>`);
 
         // b) Calcular a média de cada aluno manualmente e armazenar em um novo vetor
         let medias = [];
@@ -60,15 +78,23 @@ Ytalo Ravir Freitas Vasconcelos / Matrícula: 2425167
         }
 
         document.write("<h3>Médias dos alunos em ordem crescente:</h3>");
-        document.write(medias.join(", ") + "<br><br>");
+        for(let i = 0; i < medias.length; i++){
+            if(i == (medias.length - 1)){
+                document.write(`${medias[i]} </br>`);
+            }
+            else {
+                document.write(`${medias[i]}, `);
+            }
+
+        }
 
         // c) Determinar a maior e a menor média manualmente
         let maiorMedia = medias[medias.length - 1];
         let menorMedia = medias[0];
 
         document.write("<h3>Maior e Menor Média da Turma:</h3>");
-        document.write(`Maior média: ${maiorMedia}<br>`);
-        document.write(`Menor média: ${menorMedia}<br><br>`);
+        document.write(`<b>Maior média:</b> ${maiorMedia}<br>`);
+        document.write(`<b>Menor média:</b> ${menorMedia}<br><br>`);
 
         // d) Classificar alunos como aprovados ou em recuperação
         let aprovados = 0;
@@ -82,14 +108,27 @@ Ytalo Ravir Freitas Vasconcelos / Matrícula: 2425167
         }
 
         document.write("<h3>Classificação dos Alunos:</h3>");
-        document.write(`Aprovados: ${aprovados}<br>`);
-        document.write(`Recuperação: ${medias.length - aprovados}<br>`);
-        document.write(`Médias em recuperação: ${recuperacao.join(", ")}<br>`);
+        document.write(`<b>Aprovados:</b> ${aprovados}<br>`);
+        document.write(`<b>Recuperação:</b> ${medias.length - aprovados}<br>`);
+        document.write(`<b>Médias em recuperação:</b> </br>`);
+        
+        if(recuperacao.length == 0){
+            document.write(`Nenhuma aluno de recuperação.`);
+        }
+        else {
+            for(let i = 0; i < recuperacao.length; i++){
+                if(i == (recuperacao.length - 1)){
+                    document.write(`${recuperacao[i]} </br>`);
+                }
+                else{
+                    document.write(`${recuperacao[i]}, `);
+                }
+            }
+        }
+        
+
+
     </script>
-
-</head>
-
-<body>
 
 </body>
 
